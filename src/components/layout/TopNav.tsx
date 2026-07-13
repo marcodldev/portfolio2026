@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useScroll } from '../../context/ScrollContext'
-import { RESUME_URL } from '../../data/resume'
+import { RESUME_LABEL, RESUME_URL } from '../../data/resume'
 import BrandLogo from './BrandLogo'
 
 const NAV = [
@@ -70,7 +70,7 @@ export default function TopNav() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="top-nav-resume-text">VIEW RESUME</span>
+          <span className="top-nav-resume-text">{RESUME_LABEL}</span>
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="1.2" />
           </svg>
@@ -124,7 +124,7 @@ export default function TopNav() {
             onClick={() => setMenuOpen(false)}
             tabIndex={menuOpen ? 0 : -1}
           >
-            VIEW RESUME
+            {RESUME_LABEL}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="1.2" />
             </svg>
