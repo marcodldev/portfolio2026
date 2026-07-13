@@ -2,6 +2,8 @@
 
 .top-nav-toggle {
   display: none;
+  position: relative;
+  z-index: 260;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
@@ -40,6 +42,18 @@
 
 .top-nav-toggle.is-open .top-nav-toggle-bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
+}
+
+.top-nav-toggle.is-open .top-nav-toggle-bar:nth-child(1),
+.top-nav-toggle.is-open .top-nav-toggle-bar:nth-child(3) {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.top-nav-toggle.is-open {
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 43, 117, 0.35);
+  background: rgba(255, 43, 117, 0.08);
 }
 
 .top-nav-mobile {
