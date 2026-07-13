@@ -702,10 +702,10 @@ button:disabled,
     position: fixed;
     right: 18px;
     bottom: 22px;
-    z-index: 180;
+    z-index: 210;
     pointer-events: none;
-    color: rgba(255, 43, 117, 0.62);
-    filter: drop-shadow(0 0 10px rgba(255, 43, 117, 0.35));
+    color: rgba(255, 43, 117, 0.72);
+    filter: drop-shadow(0 0 12px rgba(255, 43, 117, 0.45));
     animation: mobile-scroll-hint-bob 1.6s ease-in-out infinite;
   }
 }
