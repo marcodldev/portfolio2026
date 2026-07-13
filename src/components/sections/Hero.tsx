@@ -1,6 +1,13 @@
 import Section from '../Section'
 import Button from '../Button'
+import DomComment from '../DomComment'
 import { useScroll } from '../../context/ScrollContext'
+
+const HERO_DOM_COMMENT = `     __
+   <(o )___
+    ( ._> /
+     '---'     Quack quack. 
+     Mi hai trovato, la prossima volta mi nasconderò meglio.`
 
 export default function Hero() {
   const { goToSection, currentSection } = useScroll()
@@ -8,6 +15,7 @@ export default function Hero() {
 
   return (
     <Section number="01" index={0} className="hero">
+      <DomComment text={HERO_DOM_COMMENT} />
       <div className={`hero-inner ${isActive ? 'is-active' : ''}`}>
         <div className="hero-text">
           <span className="vhs-label">▶ TAPE_01 · HOME</span>
