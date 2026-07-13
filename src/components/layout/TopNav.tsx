@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useScroll } from '../../context/ScrollContext'
-import { RESUME_DOWNLOAD_NAME, RESUME_URL } from '../../data/resume'
+import { RESUME_URL } from '../../data/resume'
 import BrandLogo from './BrandLogo'
 
 const NAV = [
@@ -67,7 +67,6 @@ export default function TopNav() {
         <a
           className="top-nav-resume top-nav-resume--desktop"
           href={RESUME_URL}
-          download={RESUME_DOWNLOAD_NAME}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -120,7 +119,6 @@ export default function TopNav() {
           <a
             className="top-nav-mobile-resume"
             href={RESUME_URL}
-            download={RESUME_DOWNLOAD_NAME}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
