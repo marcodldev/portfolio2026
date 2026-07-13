@@ -1,0 +1,236 @@
+/* ── VHS chapter timeline (About) ── */
+
+.vhs-timeline {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.vhs-timeline-header {
+  margin-bottom: 16px;
+}
+
+.vhs-timeline-play {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: rgba(234, 234, 234, 0.7);
+  flex-shrink: 0;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 5px 12px;
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vhs-timeline-play:hover {
+  border-color: rgba(255, 43, 117, 0.45);
+  color: var(--cream);
+}
+
+.vhs-timeline.is-playing .vhs-timeline-play {
+  color: var(--neon-pink);
+  border-color: rgba(255, 43, 117, 0.5);
+  box-shadow: 0 0 10px rgba(255, 43, 117, 0.15);
+}
+
+.vhs-timeline-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+
+.vhs-timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(94, 252, 255, 0.2);
+  pointer-events: none;
+}
+
+.vhs-playhead {
+  position: absolute;
+  top: 8px;
+  left: var(--playhead, 0%);
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 1px;
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.vhs-timeline.is-playing .vhs-playhead {
+  opacity: 1;
+}
+
+.vhs-chapter {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  padding: 0 8px 0 0;
+  transition: opacity 0.4s ease;
+}
+
+.vhs-chapter.is-active .vhs-chapter-time {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.vhs-chapter.is-active .vhs-chapter-title {
+  color: var(--neon-yellow);
+}
+
+.vhs-timeline.is-playing .vhs-chapter:not(.is-active) {
+  opacity: 0.55;
+}
+
+.vhs-chapter:last-child {
+  padding-right: 0;
+}
+
+.vhs-chapter-time {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(94, 252, 255, 0.65);
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.vhs-chapter-sep {
+  display: none;
+}
+
+.vhs-chapter-title {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin: 0 0 6px;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.vhs-chapter-desc {
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(234, 234, 234, 0.5);
+  margin: 0;
+  max-width: 180px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Vertical — mobile / narrow */
+@media (max-width: 900px) {
+  .vhs-timeline-track {
+    flex-direction: column;
+    gap: 0;
+    padding-left: 4px;
+  }
+
+  .vhs-timeline-track::before {
+    top: 0;
+    bottom: 0;
+    left: 28px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: rgba(94, 252, 255, 0.2);
+  }
+
+  .vhs-playhead {
+    top: var(--playhead, 0%);
+    left: 28px;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .vhs-chapter {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    row-gap: 4px;
+    padding: 0 0 18px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .vhs-chapter:last-child {
+    padding-bottom: 0;
+  }
+
+  .vhs-chapter-time {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .vhs-chapter-sep {
+    display: block;
+    grid-column: 1 / -1;
+    height: 1px;
+    margin: 0 0 14px 52px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .vhs-chapter:first-child .vhs-chapter-sep {
+    display: none;
+  }
+
+  .vhs-chapter-title {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+
+  .vhs-chapter-desc {
+    grid-column: 2;
+    grid-row: 2;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 768px) {
+  .vhs-timeline {
+    padding: 12px;
+  }
+
+  .vhs-chapter-desc {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vhs-playhead {
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+/* ── Brand logo (navbar) ── */
+
+.brand-logo {
+  display: block;
+  width: auto;
+  height: 56px;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.top-nav-brand .brand-logo {
+  transition: filter 0.25s ease;
+}
+
+.top-nav-brand:hover:not(:disabled) .brand-logo {
+  filter: brightness(1.08) drop-shadow(0 0 10px rgba(255, 229, 102, 0.35));
+  animation: nav-jitter 0.15s ease 2;
+}
+
+@media (max-width: 768px) {
+  .brand-logo {
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logo {
+    height: 44px;
+  }
+}
