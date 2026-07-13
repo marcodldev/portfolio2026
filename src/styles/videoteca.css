@@ -186,6 +186,7 @@
   object-fit: cover;
   object-position: top center;
   display: block;
+  background: rgba(255, 255, 255, 0.04);
   transition: transform 0.35s ease;
 }
 

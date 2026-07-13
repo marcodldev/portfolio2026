@@ -6,16 +6,18 @@ import VhsCase from './VhsCase'
 function VhsProjectCard({
   project,
   onOpen,
+  priority,
 }: {
   project: Project
   onOpen: () => void
+  priority: 'high' | 'low'
 }) {
   return (
     <button
       type="button"
       className="vhs-case-btn"
       onClick={onOpen}
-      aria-label={`Apri screenshot ${project.title}`}
+      aria-label={`Apri ${project.title}`}
     >
       <VhsCase>
         <img
@@ -23,6 +25,8 @@ function VhsProjectCard({
           alt=""
           className="vhs-case-image"
           loading="lazy"
+          decoding="async"
+          fetchPriority={priority}
         />
         <span className="vhs-case-label">{project.label}</span>
       </VhsCase>
@@ -35,13 +39,14 @@ export default function ProjectGallery() {
 
   return (
     <div className="projects-gallery-wrap">
-      <p className="videoteca-room-label">VIDEOTECA · SCREENSHOT</p>
+      <p className="videoteca-room-label">▶ VIDEOTECA · PROGETTI</p>
       <div className="projects-gallery" role="list" aria-label="Progetti web">
-        {PROJECTS.map((project) => (
+        {PROJECTS.map((project, index) => (
           <VhsProjectCard
             key={project.id}
             project={project}
             onOpen={() => setActive(project)}
+            priority={index < 3 ? 'high' : 'low'}
           />
         ))}
       </div>
@@ -49,3 +54,4 @@ export default function ProjectGallery() {
     </div>
   )
 }
+

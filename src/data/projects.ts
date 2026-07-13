@@ -7,11 +7,38 @@ export interface Project {
   shortDescription: string
   stack: string[]
   image: string
+  imageFull: string
   github?: string
   demo?: string
 }
 
-const PROJECTS_DATA: Project[] = [
+interface ProjectSource {
+  id: string
+  title: string
+  label: string
+  shortDescription: string
+  stack: string[]
+  image: string
+  github?: string
+  demo?: string
+}
+
+function toWebpPaths(src: string) {
+  const normalized = src.replace(/^\//, '')
+  const dot = normalized.lastIndexOf('.')
+  const withoutExt = dot === -1 ? normalized : normalized.slice(0, dot)
+  const slash = withoutExt.lastIndexOf('/')
+  const dir = slash === -1 ? '' : withoutExt.slice(0, slash)
+  const name = slash === -1 ? withoutExt : withoutExt.slice(slash + 1)
+  const prefix = dir ? `${dir}/` : ''
+
+  return {
+    thumb: `${prefix}thumbs/${name}.webp`,
+    full: `${prefix}full/${name}.webp`,
+  }
+}
+
+const PROJECTS_DATA: ProjectSource[] = [
   {
     id: 'vestifacile',
     title: 'VestiFacile',
@@ -128,7 +155,11 @@ const PROJECTS_DATA: Project[] = [
   },
 ]
 
-export const PROJECTS: Project[] = PROJECTS_DATA.map((project) => ({
-  ...project,
-  image: assetUrl(project.image),
-}))
+export const PROJECTS: Project[] = PROJECTS_DATA.map((project) => {
+  const { thumb, full } = toWebpPaths(project.image)
+  return {
+    ...project,
+    image: assetUrl(thumb),
+    imageFull: assetUrl(full),
+  }
+})

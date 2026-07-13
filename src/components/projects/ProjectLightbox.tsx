@@ -37,7 +37,7 @@ export default function ProjectLightbox({ project, onClose }: ProjectLightboxPro
         </button>
 
         <VhsCase expanded>
-          <ZoomPanViewport src={project.image} alt={project.title} />
+          <ZoomPanViewport src={project.imageFull} alt={project.title} />
           <span className="vhs-case-label">{project.label}</span>
         </VhsCase>
 
